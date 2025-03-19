@@ -15,6 +15,8 @@ from dotenv import load_dotenv
 load_dotenv()
 os.environ["HUGGINGFACE_API_TOKEN"] = os.getenv("HUGGINGFACE_API_TOKEN")
 groq_api_key = os.getenv("GROQ_API_KEY")
+st.secrets["HUGGINGFACE_API_TOKEN"]
+st.secrets["GROQ_API_KEY"]
 
 st.title("Mental Health Bot")
 dataset = pd.read_csv(r"C:\Users\LENOVO\Documents\AI\GenAI\LangChain\1-Langchain\Projects\Mental_Health_Bot\Data\Dataset.csv")
