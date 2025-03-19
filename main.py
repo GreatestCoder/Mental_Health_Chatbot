@@ -18,8 +18,9 @@ groq_api_key = os.getenv("GROQ_API_KEY")
 st.secrets["HUGGINGFACE_API_TOKEN"]
 st.secrets["GROQ_API_KEY"]
 
-st.title("Mental Health Bot")
-dataset = pd.read_csv(r"C:\Users\LENOVO\Documents\AI\GenAI\LangChain\1-Langchain\Projects\Mental_Health_Bot\Data\Dataset.csv")
+base_dir = os.path.dirname(__file__)
+dataset_path = os.path.join(base_dir, "Data", "Dataset.csv")
+dataset = pd.read_csv(dataset_path)
 
 @st.cache_resource
 def load_model_and_vectorstore():
