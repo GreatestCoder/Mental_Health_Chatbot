@@ -13,10 +13,10 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-os.environ["HUGGINGFACE_API_TOKEN"] = os.getenv("HUGGINGFACE_API_TOKEN")
-groq_api_key = os.getenv("GROQ_API_KEY")
-st.secrets["HUGGINGFACE_API_TOKEN"]
-st.secrets["GROQ_API_KEY"]
+hf_token = st.secrets.get("HUGGINGFACE_API_TOKEN", os.getenv("HUGGINGFACE_API_TOKEN"))
+groq_api_key = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY"))
+os.environ["HUGGINGFACE_API_TOKEN"] = hf_token
+os.environ["GROQ_API_KEY"] = groq_api_key
 
 base_dir = os.path.dirname(__file__)
 dataset_path = os.path.join(base_dir, "Data", "Dataset.csv")
