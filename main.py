@@ -88,3 +88,23 @@ if user_input:
     session_history = get_session_history(session_id)
     response = conversational_rag_chain.invoke({"input": user_input}, config = {"configurable": {"session_id":session_id}})
     st.write("Assistant:", response['answer'])
+
+
+import qrcode
+from io import BytesIO
+
+deployed_url = "https://mentalhealthchatbot-c9w9kcycexbeit8cjftdy5.streamlit.app/"
+
+qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=4,
+)
+qr.add_data(deployed_url)
+qr.make(fit=True)
+img = qr.make_image(fill="black", back_color="white")
+buffer = BytesIO()
+img.save(buffer, format="PNG")
+buffer.seek(0)
+st.sidebar.image(buffer, caption="Scan this QR code to visit the Chatbot", use_column_width=True)
