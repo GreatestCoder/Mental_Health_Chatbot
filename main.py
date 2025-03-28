@@ -1,6 +1,7 @@
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain_groq import ChatGroq
+from langchain_core.caches import InMemoryCache
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
@@ -17,6 +18,8 @@ hf_token = st.secrets.get("HUGGINGFACE_API_TOKEN", os.getenv("HUGGINGFACE_API_TO
 groq_api_key = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY"))
 os.environ["HUGGINGFACE_API_TOKEN"] = hf_token
 os.environ["GROQ_API_KEY"] = groq_api_key
+
+ChatGroq.model_rebuild(BaseCache=InMemoryCache)
 
 base_dir = os.path.dirname(__file__)
 dataset_path = os.path.join(base_dir, "Data", "Dataset.csv")
