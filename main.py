@@ -19,7 +19,7 @@ groq_api_key = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY"))
 os.environ["HUGGINGFACE_API_TOKEN"] = hf_token
 os.environ["GROQ_API_KEY"] = groq_api_key
 
-ChatGroq.cache = InMemoryCache
+ChatGroq.BaseCache = InMemoryCache
 ChatGroq.model_rebuild()
 
 base_dir = os.path.dirname(__file__)
