@@ -1,3 +1,12 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from langchain.callbacks.base import BaseCallbackHandler as Callbacks
+else:
+    class Callbacks:
+        pass
+
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain_groq import ChatGroq
