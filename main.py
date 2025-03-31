@@ -28,6 +28,15 @@ groq_api_key = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY"))
 os.environ["HUGGINGFACE_API_TOKEN"] = hf_token
 os.environ["GROQ_API_KEY"] = groq_api_key
 
+st.set_page_config(page_title="Mental-Health Chatbot", page_icon="🩺", layout="wide")
+
+st.markdown("""
+    <h1 style='text-align: center; color: #2C3E50;'>Chatbot for user Mental well-being.</h1>
+    <p style='text-align: center; color: #7F8C8D;'>
+        Get feedback based on your thoughts and feelings, and be guided by this chatbot like a parent guiding their children.
+    </p>
+""", unsafe_allow_html=True)
+
 ChatGroq.BaseCache = InMemoryCache
 ChatGroq.model_rebuild()
 
